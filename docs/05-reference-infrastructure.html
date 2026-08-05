@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>05 - Reference site infrastructure - Starship Suits</title>
+<link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<nav class="crumb"><a href="index.html">Documentation</a> <strong>05 - Reference site infrastructure</strong></nav>
+
+<main class="doc">
+
+<h1>Reference site infrastructure</h1>
+<p class="lede">Technical profile of the two studios given as reference points: registrars, DNS,
+hosting, CDN, and technology stack. Gathered 5 August 2026 from public DNS, WHOIS, and HTTP
+response headers.</p>
+
+<div class="note">
+  <b>The finding, in one line</b>
+  Both reference sites are <b>Wix</b>. Not similar platforms - the same platform, the same
+  renderer, the same asset CDN. The only meaningful difference is that one pays for a custom domain
+  and the other does not. Every competitive observation in these documents follows from that.
+</div>
+
+<h2>Side by side</h2>
+<div class="wide">
+<table>
+  <thead><tr><th></th><th>Heckhoundz Studio</th><th>Fur Me Creations</th></tr></thead>
+  <tbody>
+    <tr><td><b>Address</b></td><td>www.heckhoundzstudio.com</td>
+      <td>furmecreations.wixsite.com/fur-me-creations</td></tr>
+    <tr><td><b>Platform</b></td><td>Wix (paid tier)</td><td>Wix (free tier)</td></tr>
+    <tr><td><b>Registrar</b></td><td>Wix.com Ltd. (IANA 3817)</td>
+      <td>None - no domain of its own. <code>wixsite.com</code> belongs to Wix, registered
+      through GoDaddy behind Domains By Proxy.</td></tr>
+    <tr><td><b>Domain created</b></td><td>26 December 2025</td><td>n/a (<code>wixsite.com</code>, 2012)</td></tr>
+    <tr><td><b>Expires</b></td><td>26 December 2026</td><td>n/a</td></tr>
+    <tr><td><b>Nameservers</b></td><td>ns10.wixdns.net, ns11.wixdns.net</td>
+      <td>NS1 (dns1-4.p07.nsone.net), Wix's own</td></tr>
+    <tr><td><b>Edge</b></td><td>Fastly, plus Google Cloud on the www path</td><td>Cloudflare</td></tr>
+    <tr><td><b>Origin server</b></td><td>Pepyaka (Wix's nginx fork)</td><td>Pepyaka</td></tr>
+    <tr><td><b>Renderer</b></td><td colspan="2">Wix Thunderbolt - Wix's server-rendered React platform</td></tr>
+    <tr><td><b>Asset CDN</b></td><td colspan="2">static.parastorage.com, static.wixstatic.com, siteassets.parastorage.com</td></tr>
+    <tr><td><b>Analytics</b></td><td>Google Tag Manager, Meta pixel signals</td><td>Same stack</td></tr>
+    <tr><td><b>Custom email</b></td><td>No MX records - uses a Gmail address</td><td>Gmail address</td></tr>
+    <tr><td><b>DNSSEC</b></td><td>Unsigned</td><td>n/a</td></tr>
+    <tr><td><b>CAA records</b></td><td>None</td><td>n/a</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Heckhoundz Studio - detail</h2>
+
+<h3>DNS</h3>
+<pre><code>heckhoundzstudio.com.       NS    ns10.wixdns.net.
+heckhoundzstudio.com.       NS    ns11.wixdns.net.
+heckhoundzstudio.com.       SOA   ns10.wixdns.net. support.wix.com. 2025122620
+heckhoundzstudio.com.       A     185.230.63.107 / .171 / .186   (netname wix_com_inc)
+www.heckhoundzstudio.com.   CNAME cdn1.wixdns.net.
+                                  -> td-ccm-neg-87-45.wixdns.net. -> 34.149.87.45 (Google Cloud)
+
+MX    (none)      TXT   (none)      CAA   (none)      DNSSEC  unsigned</code></pre>
+<p>A textbook fully-managed Wix setup: Wix is registrar, DNS operator, CDN and host. The apex
+resolves to Wix's own <code>185.230.63.0/24</code> block and <code>www</code> is delegated into
+Wix's CDN chain, which terminates on Google Cloud. The absence of MX records confirms the
+public Gmail address is the studio's only contact route - there is no mail on the domain.</p>
+
+<h3>HTTP response headers</h3>
+<pre><code>server: Pepyaka
+strict-transport-security: max-age=31556952
+x-content-type-options: nosniff
+x-wix-request-id, x-wix-published-version, x-wix-meta-site-id
+server-timing: cache;desc=hit, varnish;desc=hit_miss, dc;desc=fastly_virginia-phy_g
+x-served-by: cache-yyz4549-YYZ
+via: 1.1 google
+alt-svc: h3=":443"</code></pre>
+<p>HSTS is set at roughly one year and MIME sniffing is disabled. There is <b>no
+Content-Security-Policy, no X-Frame-Options and no Referrer-Policy</b> - the site can be framed by
+anyone. That is Wix's platform default, not a choice the studio made, and it is not something a Wix
+customer can change. Worth noting as one of the concrete things a custom build does better.</p>
+
+<h3>Registration</h3>
+<p>Registered through Wix on 26 December 2025 - about seven months old, and locked with both
+<code>clientTransferProhibited</code> and <code>clientUpdateProhibited</code>.</p>
+<div class="note">
+  <b>A privacy lesson worth taking</b>
+  The WHOIS record for <code>heckhoundzstudio.com</code> has <b>no privacy protection enabled</b>.
+  The registrant name, organisation, street address and contact details are all publicly readable
+  by anyone running a one-line command - and the address appears to be residential. The specifics
+  are not reproduced here, because publishing an individual's home address into a repository that
+  is going public would be a real harm rather than useful research.
+  <br><br>
+  For Starship Suits: <b>enable WHOIS privacy at registration</b>, and prefer a registrar that
+  includes it free for the life of the domain rather than as a paid add-on. For a studio that
+  takes commissions from the public and works from home, this is a safety matter, not a
+  preference. See <a href="04-build-plan.html#registrar">document 04</a>.
+</div>
+
+<h2>Fur Me Creations - detail</h2>
+<p>No domain at all. The site lives on a path under Wix's shared <code>wixsite.com</code> domain,
+which is the free tier, fronted by Cloudflare (<code>server: cloudflare</code>,
+<code>cf-ray</code>, and a <code>__cf_bm</code> bot-management cookie). Same Thunderbolt renderer
+and Parastorage asset CDN as Heckhoundz.</p>
+<p>The practical consequences of the free tier are worth spelling out, because they are the visible
+gap between the two studios:</p>
+<ul>
+  <li>The URL is <code>furmecreations.wixsite.com/fur-me-creations</code> - hard to say aloud,
+  hard to put on a business card, and it reads as unbudgeted.</li>
+  <li>No email on the domain, ever. The contact route is a Gmail address and a personal phone number.</li>
+  <li>Search authority accrues to <code>wixsite.com</code>, not to the studio.</li>
+  <li>If they later buy a domain, every existing link, card and social bio breaks.</li>
+</ul>
+<p>Notably, this studio is the more commercially diversified of the two - art commissions, merch,
+deep-cleans and refurbs - and it is still on a free subdomain. The constraint is likely budget or
+inclination rather than lack of business.</p>
+
+<h2>What this means for Starship Suits</h2>
+<div class="wide">
+<table>
+  <thead><tr><th>Observation</th><th>Implication</th></tr></thead>
+  <tbody>
+    <tr><td>Both competitors are on Wix templates</td>
+      <td>A custom-built site is an immediate and durable differentiator. In a craft business,
+      the site is itself a work sample - a template says the studio outsources its own presentation.</td></tr>
+    <tr><td>Neither sets CSP, X-Frame-Options or Referrer-Policy</td>
+      <td>Wix customers cannot set these. A custom site on a real host can, at no cost. Minor for
+      a brochure site, but it is free ground.</td></tr>
+    <tr><td>Both carry the full Wix Thunderbolt runtime</td>
+      <td>A hand-built static site will be dramatically lighter and faster. That is a genuine
+      advantage on mobile, which is where most of this audience browses.</td></tr>
+    <tr><td>Heckhoundz uses its registrar as host, DNS and CDN</td>
+      <td>Convenient, but total lock-in. Keeping the registrar separate from the host - as
+      recommended in document 04 - means the studio can change host without touching the domain.</td></tr>
+    <tr><td>Heckhoundz has no WHOIS privacy</td>
+      <td>Enable it from day one. Non-negotiable for a home-based studio.</td></tr>
+    <tr><td>Neither has custom email on their domain</td>
+      <td><code>hello@starshipsuits.com</code> costs a few dollars a month and outclasses a Gmail
+      address on every invoice and enquiry.</td></tr>
+    <tr><td>Heckhoundz's domain is seven months old</td>
+      <td>There is no entrenched search incumbent here. The category is winnable.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Where Wix is genuinely the better answer</h3>
+<p>Stated plainly, because the recommendation should not be taken on faith: Wix wins when nobody
+technical is available to maintain the site. It has a visual editor the studio owner can use
+without help, hosting and TLS and backups are handled, and a form builder and booking tools come
+included. Both reference studios chose it, and for a solo maker with no developer that is a
+defensible choice.</p>
+<p>The custom build only wins because there <em>is</em> a developer here. The real question that
+decides it is in <a href="04-build-plan.html#platform">document 04</a>: who edits this site in two
+years?</p>
+
+<footer>
+  <a href="index.html">Back to documentation</a> &middot; Related:
+  <a href="04-build-plan.html">04 - Build and launch plan</a>
+  <br><span class="muted">Gathered 5 August 2026 via dig, whois, and HTTP HEAD against publicly
+  published sites. Registrant personal data deliberately omitted.</span>
+</footer>
+
+</main>
+</body>
+</html>

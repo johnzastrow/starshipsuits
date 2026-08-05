@@ -34,10 +34,18 @@ jobs:
 
       - uses: actions/configure-pages@v5
 
-      # No build step - the site is served as authored.
+      # No build step - the site is served as authored. Only the site itself is
+      # staged: docs/ holds internal planning material and must not be published
+      # alongside the public site.
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp index.html _site/
+          cp -r assets _site/
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
 
       - id: deployment
         uses: actions/deploy-pages@v4

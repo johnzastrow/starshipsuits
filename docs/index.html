@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>starshipsuits - project documentation</title>
+<link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<nav class="crumb"><strong>starshipsuits</strong> <span class="muted">project documentation</span></nav>
+
+<main class="doc">
+
+<h1>starshipsuits</h1>
+<p class="lede">Branding and public website for a fursuit-making studio. These are the working
+documents for the project: what the brand is, what it looks like, what the site contains, and how
+it gets built and shipped.</p>
+
+<div class="note">
+  <b>Where the project stands</b>
+  The repository is scaffolded and pushed. The one decision blocking everything downstream is the
+  <a href="02-visual-directions.html">visual direction</a> - three are drawn up and ready to compare.
+  Nothing else can be built until one is picked, because the direction determines the type scale,
+  the colour tokens, and the component shapes that every page depends on.
+</div>
+
+<h2>Documents</h2>
+
+<div class="toc">
+  <a href="01-brand-brief.html">
+    <em>01 - Strategy</em>
+    <b>Brand brief</b>
+    <span>What starshipsuits sells, who it sells to, how the two reference studios position
+    themselves, and the voice and naming decisions that follow from that.</span>
+  </a>
+  <a href="02-visual-directions.html">
+    <em>02 - Design &middot; decision needed</em>
+    <b>Visual directions</b>
+    <span>Three complete directions rendered with real type and colour - Mission Patch, Deep Space
+    Vitrine, and Cockpit - with the trade-offs of each. Pick one.</span>
+  </a>
+  <a href="03-site-architecture.html">
+    <em>03 - Content</em>
+    <b>Site architecture</b>
+    <span>Sitemap, page-by-page content specification, the commission enquiry flow, and what
+    photography and copy have to exist before launch.</span>
+  </a>
+  <a href="04-build-plan.html">
+    <em>04 - Delivery</em>
+    <b>Build and launch plan</b>
+    <span>Custom build versus Wix, where to register the domain, hosting comparison, the security
+    headers the production host must set, the phased roadmap, and the pre-launch checklist.</span>
+  </a>
+  <a href="05-reference-infrastructure.html">
+    <em>05 - Research</em>
+    <b>Reference site infrastructure</b>
+    <span>Registrars, DNS, hosting, CDN and technology stack of the two reference studios. Both run
+    on Wix; one has no domain of its own and the other has no WHOIS privacy.</span>
+  </a>
+</div>
+
+<div class="note">
+  <b>Register the domain</b>
+  <code>starshipsuits.com</code> was confirmed available against the registry on 5 August 2026,
+  along with <code>.studio</code>, <code>.art</code>, <code>.co</code>, <code>.net</code> and
+  <code>.shop</code>. The name is short, clean and unclaimed, which will not stay true forever -
+  see the <a href="04-build-plan.html#registrar">registrar comparison</a>. Enable WHOIS privacy at
+  registration, for the reason set out in <a href="05-reference-infrastructure.html">document 05</a>.
+</div>
+
+<h2>Fixed decisions</h2>
+<p>Settled, and not worth reopening without a reason:</p>
+
+<div class="wide">
+<table>
+  <thead><tr><th>Decision</th><th>Choice</th><th>Why</th></tr></thead>
+  <tbody>
+    <tr><td>Organisation name</td><td>Starship Suits</td>
+        <td>Two words formally; <code>starshipsuits</code> as one word for the domain, handles and
+        repository.</td></tr>
+    <tr><td>Palette</td><td>Orange, pink, light neutral</td><td>Client-specified.</td></tr>
+    <tr><td>Theme</td><td>Space / starship</td><td>Client-specified; carried by the name.</td></tr>
+    <tr><td>Stack</td><td>Static HTML, CSS, JS - no framework</td>
+        <td>A brochure and portfolio site has no server-side state. A framework would add a build
+        step, a dependency tree, and a supply-chain surface for no functional gain.</td></tr>
+    <tr><td>Repository</td><td><code>johnzastrow/starshipsuits</code>, private</td>
+        <td>Private while it is a placeholder. Goes public when there is real content.</td></tr>
+    <tr><td>Staging</td><td>GitHub Pages, currently disabled</td>
+        <td>Pages is unavailable on private repositories on a free plan. Re-enables on going public.</td></tr>
+    <tr><td>Production host</td><td>Undecided - outside GitHub</td>
+        <td>Cloudflare Pages or Netlify recommended; see the
+        <a href="04-build-plan.html#hosting">hosting comparison</a>.</td></tr>
+    <tr><td>Platform</td><td>Custom build, not Wix</td>
+        <td>Both reference studios use Wix. Custom wins on identity, speed and portability - but
+        only because a developer is maintaining it. See
+        <a href="04-build-plan.html#platform">the platform comparison</a>.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Open questions</h2>
+<p>Things only the studio owner can answer. Each one blocks specific work:</p>
+
+<div class="wide">
+<table>
+  <thead><tr><th>Question</th><th>Blocks</th></tr></thead>
+  <tbody>
+    <tr><td>Which visual direction?</td><td>Everything. This is the critical path.</td></tr>
+    <tr><td>Real commission tiers and prices?</td>
+        <td>The prices page. Figures in these documents are placeholders benchmarked against
+        Heckhoundz Studio, not the studio's own numbers.</td></tr>
+    <tr><td>Is there existing finished work to photograph?</td>
+        <td>The portfolio, and the hero image on every direction. A fursuit site without
+        photography cannot launch.</td></tr>
+    <tr><td>Real studio name, location, and contact address?</td>
+        <td>Contact page, footer, structured data.</td></tr>
+    <tr><td>Register <code>starshipsuits.com</code>?</td>
+        <td>DNS, TLS, canonical URLs, production deploy, business email. Confirmed available -
+        this one is just waiting on a purchase.</td></tr>
+    <tr><td>Does the studio have terms of service?</td>
+        <td>The commission flow. At these price points a written agreement protects both sides;
+        neither reference site publishes one.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<footer>
+  Working documents, last revised 5 August 2026. Placeholder figures are marked where they appear.
+</footer>
+
+</main>
+</body>
+</html>

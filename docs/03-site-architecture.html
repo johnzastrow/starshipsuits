@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>03 - Site architecture - Starship Suits</title>
+<link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<nav class="crumb"><a href="index.html">Documentation</a> <strong>03 - Site architecture</strong></nav>
+
+<main class="doc">
+
+<h1>Site architecture</h1>
+<p class="lede">The sitemap, what each page must contain, the commission enquiry flow, and the
+photography and copy that have to exist before any of it can launch. Structure is independent of
+the visual direction - this document holds whichever of the three is chosen.</p>
+
+<h2>Sitemap</h2>
+<p>Seven pages. Both reference studios run five to six; the additions are the queue page and the
+terms page, which are the two places where <a href="01-brand-brief.html">the brief</a> identified a
+real competitive gap.</p>
+
+<pre><code>/                    Home
+/work/               Portfolio - grid of completed suits
+/work/&lt;suit&gt;/        Individual suit - full photo set, build notes
+/prices/             Commission tiers, add-ons, payment terms
+/commissions/        How to commission, current status, enquiry form
+/queue/              Live build queue
+/terms/              Terms of service
+/about/              The maker, the studio, contact
+/thanks/             Enquiry received confirmation</code></pre>
+
+<div class="note">
+  <b>Deliberately absent</b>
+  No blog, no shop, no login, no newsletter. Each would add a build step, a backend, or a
+  maintenance burden the studio has to sustain. A dormant blog with three posts from 2026 actively
+  damages credibility. Social feeds already do the "recent activity" job; link to them instead.
+</div>
+
+<h2>Page specifications</h2>
+
+<h3>Home</h3>
+<p>One job: convince a stranger this maker is good, in under ten seconds, then send them to the
+portfolio. It is not a summary of the whole site.</p>
+<div class="wide">
+<table>
+  <thead><tr><th>Block</th><th>Contains</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>Hero</td><td>Wordmark, one-line positioning, one strong photograph, two buttons</td>
+      <td>The photograph is the argument. Everything else is caption.</td></tr>
+    <tr><td>Status strip</td><td>"Slots open" / "Waitlist only" / "Closed", with the next opening date</td>
+      <td>Single most-read element for returning visitors. Must be trivially editable - one line in one file.</td></tr>
+    <tr><td>Selected work</td><td>Four to six suits, linking through to the portfolio</td>
+      <td>Best work only. A weak sixth entry costs more than an empty slot.</td></tr>
+    <tr><td>Tier summary</td><td>Four tiers with starting prices, linking to prices</td>
+      <td>Sets expectation early. Filters out enquiries that were never going to convert.</td></tr>
+    <tr><td>Process</td><td>Three or four steps, foam to finish</td>
+      <td>Answers "what happens after I pay", which is the real anxiety at these amounts.</td></tr>
+    <tr><td>Footer</td><td>Social links, email, terms, copyright</td><td>Same on every page.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Portfolio</h3>
+<p>A grid of completed suits, newest first, each opening a detail page. Filters by tier and by style
+only once there are more than about twenty suits - before that they are friction with no benefit.</p>
+<p>Each detail page carries: six to twelve photographs, the character name, the owner's credit and
+social handle with permission, the tier, the build year, and two or three sentences of build notes.
+Those notes are the most persuasive copy on the site, because they are the only place the maker's
+competence is visible in words rather than pictures.</p>
+
+<h3>Prices</h3>
+<p>Ranges, not single figures, with a plain statement of what moves a price within its range -
+colour count, character complexity, and extras. Both reference studios publish ranges; matching
+them is table stakes.</p>
+<div class="wide">
+<table>
+  <thead><tr><th>Tier</th><th>Includes</th><th>Benchmark range</th></tr></thead>
+  <tbody>
+    <tr><td>Head</td><td>Head only - foam base, 3D or follow-me eyes, fans</td><td>$3,000 - 5,000</td></tr>
+    <tr><td>Mini partial</td><td>Head, handpaws, tail</td><td>$3,400 - 6,500</td></tr>
+    <tr><td>Full partial</td><td>Head, handpaws, feetpaws, tail, arm sleeves</td><td>$4,500 - 8,000</td></tr>
+    <tr><td>Slim digi fullsuit</td><td>Everything, slim digitigrade padding</td><td>$6,500 - 11,000</td></tr>
+    <tr><td>Plush digi fullsuit</td><td>Everything, thick digitigrade padding</td><td>$6,600 - 12,000</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="muted"><b>These figures are benchmarked from Heckhoundz Studio and are placeholders.</b>
+They must be replaced with the studio's own numbers before launch. Also needed on this page:
+add-ons (extra fans, LED eyes, magnetic parts, wings), payment plan terms, deposit amount and
+whether it is refundable, and shipping.</p>
+
+<h3>Commissions</h3>
+<p>The conversion page, and the only page with a form. Three sections in order: current status,
+what the maker needs from you, and the enquiry form.</p>
+<p>"What the maker needs" should be specific and demanding - a reference sheet, measurements or a
+DTD, a tier, a budget, and a deadline if any. Asking properly here saves the six-message exchange
+that Heckhoundz avoids by refusing quotes entirely. Neither reference site publishes DTD
+instructions; including them is a small, genuinely useful differentiator.</p>
+
+<h3>Queue</h3>
+<p>The differentiating page. A simple table: position, character, tier, current stage, and a
+month-level estimate. First names or handles only, with permission.</p>
+<pre><code>1   Vesper    Plush digi fullsuit    Fur - body        est. Sept 2026
+2   Koa       Mini partial           Foam - head       est. Oct 2026
+3   (open)    -                      -                 -</code></pre>
+<p>It costs one hand-edit a fortnight and does more for trust than any amount of copy, because it
+is the only page on any competitor site that answers "am I being forgotten". It also reduces
+"where is my suit" messages, which is the maker's own time back.</p>
+
+<h3>Terms of service</h3>
+<p>Neither reference studio publishes one. At $3,000 to $12,000 that is a real risk for both
+parties. Must cover: deposit and refundability, payment schedule, what happens if the client
+cancels, what happens if the maker cannot complete, turnaround estimates and what invalidates them,
+revision and approval points, shipping and insurance, repair and cleaning policy, photography and
+publicity rights, and character copyright - who owns the design and what the maker may show.</p>
+<div class="note">
+  <b>Not legal advice</b>
+  This is a content specification, not a contract. The finished terms should be reviewed by
+  somebody qualified in the studio's jurisdiction before publication.
+</div>
+
+<h3>About</h3>
+<p>The maker, honestly. Years of experience, what drew them to the craft, where they work, what
+they specialise in, and a photograph of the person or their workspace. Both reference studios lead
+with personality and it works - "meet the artist" on Fur Me Creations, the "Heckhoundz family"
+framing on Heckhoundz. Contact details and social links live here too.</p>
+
+<h2>Commission enquiry flow</h2>
+<pre><code>Portfolio ──► Prices ──► Commissions ──► Enquiry form ──► /thanks/
+                                              │
+                                              ▼
+                                   email to the studio
+                                              │
+                                              ▼
+                              maker replies with quote + slot
+                                              │
+                                              ▼
+                            deposit ──► queue entry ──► build</code></pre>
+<p>The site's responsibility ends at the enquiry. Everything after it happens over email, which is
+correct - it needs a human, and building anything more would mean a backend the studio has to run.</p>
+
+<h3>Form handling on a static site</h3>
+<p>A static site cannot process a form itself. Three options, in preference order:</p>
+<div class="wide">
+<table>
+  <thead><tr><th>Option</th><th>How</th><th>Trade-off</th></tr></thead>
+  <tbody>
+    <tr><td><b>Host form handler</b></td>
+      <td>Netlify Forms or Cloudflare Workers - the host receives the POST and emails the studio</td>
+      <td><b>Recommended.</b> No third-party origin, no JavaScript needed, spam filtering included.
+      Ties the form to the host, which is a small cost.</td></tr>
+    <tr><td>Third-party service</td><td>Formspree, Basin</td>
+      <td>Host-portable, but adds an external origin that the content security policy must permit
+      and routes enquiries through another company.</td></tr>
+    <tr><td>Mailto link</td><td>Plain email link, no form</td>
+      <td>Zero infrastructure and always works, but loses the structured fields, which were the
+      entire point.</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Whichever is chosen, the form must have: a honeypot field, a server-side length cap on every
+field, no file uploads (ask for links to reference art instead - accepting uploads on a brochure
+site is unnecessary risk), and a rate limit at the host. It collects an email address and a
+character description, so a short privacy line stating what is stored and for how long belongs in
+the footer.</p>
+
+<h2>Content requirements before launch</h2>
+<p>Every item here is studio-supplied. None of it can be written or invented during the build, and
+the site cannot launch without the first two.</p>
+<div class="wide">
+<table>
+  <thead><tr><th>Item</th><th>Detail</th><th>Blocks</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>Suit photography</td><td>6-12 shots per suit, consistent lighting, clean background;
+      one hero image at 2000px+</td><td>Home, portfolio - i.e. the site</td>
+      <td><span class="pill block">Missing</span></td></tr>
+    <tr><td>Real tiers and prices</td><td>Names, inclusions, ranges, add-ons, deposit terms</td>
+      <td>Prices, home tier summary</td><td><span class="pill block">Missing</span></td></tr>
+    <tr><td>Maker bio</td><td>150-300 words, plus a photo of the maker or workspace</td>
+      <td>About</td><td><span class="pill block">Missing</span></td></tr>
+    <tr><td>Terms of service</td><td>Reviewed, per the specification above</td><td>Terms</td>
+      <td><span class="pill block">Missing</span></td></tr>
+    <tr><td>Build notes</td><td>2-3 sentences per portfolio suit</td><td>Portfolio detail pages</td>
+      <td><span class="pill block">Missing</span></td></tr>
+    <tr><td>Owner permissions</td><td>Written consent to show each suit and credit its owner</td>
+      <td>Portfolio</td><td><span class="pill block">Missing</span></td></tr>
+    <tr><td>Contact and socials</td><td>Business email, handles, studio location</td>
+      <td>About, footer</td><td><span class="pill block">Missing</span></td></tr>
+    <tr><td>Current queue</td><td>Live builds with stages and permissions to name them</td>
+      <td>Queue</td><td><span class="pill block">Missing</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="note">
+  <b>The real critical path</b>
+  Photography, not code. The site can be built in a week; a proper shoot of existing suits takes
+  planning, a location, and possibly the owners bringing their suits in. Start arranging it now -
+  it will finish last regardless of when the build starts.
+</div>
+
+<h2>Technical notes</h2>
+<ul>
+  <li><b>URLs</b> - directory style with trailing slashes (<code>/work/vesper/</code>), so nothing
+  breaks if a build step is ever introduced.</li>
+  <li><b>Images</b> - AVIF with a JPEG fallback via <code>&lt;picture&gt;</code>, several widths in
+  <code>srcset</code>, explicit <code>width</code> and <code>height</code> on every image to prevent
+  layout shift, <code>loading="lazy"</code> on everything below the fold.</li>
+  <li><b>No client-side routing</b> - real pages, real URLs. Works without JavaScript, which
+  matters for sharing and for search.</li>
+  <li><b>JavaScript budget</b> - the gallery lightbox and the mobile navigation toggle. Nothing else
+  should need it.</li>
+  <li><b>Structured data</b> - <code>LocalBusiness</code> on About, <code>Product</code>
+  on tier entries. Cheap, and it improves how the studio surfaces in search.</li>
+  <li><b>Accessibility</b> - alt text on every suit photograph describing the character, keyboard-
+  operable lightbox and navigation, visible focus rings, and contrast checked against the chosen
+  direction's palette.</li>
+</ul>
+
+<footer>
+  <a href="index.html">Back to documentation</a> &middot; Previous:
+  <a href="02-visual-directions.html">02 - Visual directions</a> &middot; Next:
+  <a href="04-build-plan.html">04 - Build and launch plan</a>
+</footer>
+
+</main>
+</body>
+</html>

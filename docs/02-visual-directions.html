@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>02 - Visual directions - Starship Suits</title>
+<link rel="stylesheet" href="assets/docs.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Karla:wght@400;500;700&family=Baloo+2:wght@500;700;800&family=Figtree:wght@400;500;700&family=Martian+Mono:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+/* ---- preview frame chrome ---- */
+.preview { margin: 1.5rem 0 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.preview .bar { background: var(--surface); border-bottom: 1px solid var(--line); padding: .5rem .9rem;
+  font: 600 .7rem/1 ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.ph { background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.07) 0 10px, transparent 10px 20px); }
+
+/* ============ A - MISSION PATCH ============ */
+.A{--bone:#F3EDE3;--ink:#17150F;--orange:#E2571E;--pink:#E8628C;
+  background:var(--bone);color:var(--ink);font-family:Archivo,sans-serif;
+  padding:0 0 2.5rem;position:relative;overflow:hidden}
+.A::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(var(--ink) .5px,transparent .5px);background-size:4px 4px}
+.A .wrap{max-width:960px;margin:0 auto;padding:0 1.8rem;position:relative}
+.A nav{display:flex;align-items:center;gap:1.6rem;padding:1.3rem 0;border-bottom:2px solid var(--ink);
+  font:600 10px/1 "Martian Mono",monospace;letter-spacing:.1em;text-transform:uppercase}
+.A nav .mark{font-family:Archivo;font-variation-settings:"wdth" 118,"wght" 900;font-size:18px;
+  letter-spacing:-.02em;text-transform:uppercase;margin-right:auto}
+.A nav .mark s{text-decoration:none;color:var(--orange)}
+.A .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:2.5rem;align-items:center;padding:3rem 0 2.5rem}
+.A h1{font-variation-settings:"wdth" 112,"wght" 900;font-size:clamp(2.2rem,5.4vw,4rem);line-height:.92;
+  letter-spacing:-.035em;text-transform:uppercase;margin:0;color:var(--ink)}
+.A h1 u{text-decoration:none;color:var(--orange);display:block}
+.A h1 u+u{color:var(--pink)}
+.A .sub{max-width:34ch;margin:1.3rem 0 1.7rem;font-size:.97rem;line-height:1.6;color:var(--ink)}
+.A .btn{display:inline-block;background:var(--ink);color:var(--bone);text-decoration:none;
+  padding:.85rem 1.4rem;font:600 10px/1 "Martian Mono",monospace;letter-spacing:.12em;text-transform:uppercase}
+.A .btn+.btn{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink);margin-left:.4rem}
+.A .patch{aspect-ratio:1;border-radius:50%;border:3px solid var(--ink);display:grid;place-items:center;
+  text-align:center;background:
+    radial-gradient(circle at 50% 118%, var(--pink) 0 42%, transparent 42%),
+    radial-gradient(circle at 50% 30%, var(--orange) 0 26%, transparent 26%),
+    var(--bone);
+  box-shadow:0 0 0 8px var(--bone),0 0 0 11px var(--ink)}
+.A .patch span{font:700 9px/1.7 "Martian Mono",monospace;letter-spacing:.2em;text-transform:uppercase}
+.A .stub{display:flex;border:2px solid var(--ink)}
+.A .stub div{flex:1;padding:1rem 1.1rem;border-right:2px dashed var(--ink)}
+.A .stub div:last-child{border-right:0}
+.A .stub b{display:block;font:700 8px/1.6 "Martian Mono",monospace;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--orange)}
+.A .stub p{margin:.3rem 0 0;font-variation-settings:"wdth" 105,"wght" 800;font-size:1.35rem;letter-spacing:-.02em}
+.A .stub small{font:400 10px/1.5 Archivo;opacity:.6;display:block;margin-top:.1rem}
+
+/* ============ B - DEEP SPACE VITRINE ============ */
+.B{--void:#0B0910;--panel:#161020;--bone:#F0EAE2;--orange:#FF7A3D;--pink:#FF5FA2;
+  background:var(--void);color:var(--bone);font-family:Karla,sans-serif;padding:0 0 3rem;
+  position:relative;overflow:hidden}
+.B::before{content:"";position:absolute;top:-20%;right:-10%;width:70%;height:120%;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,95,162,.20),rgba(255,122,61,.10) 42%,transparent 68%);
+  filter:blur(30px)}
+.B .wrap{max-width:1000px;margin:0 auto;padding:0 2.2rem;position:relative}
+.B nav{display:flex;align-items:center;gap:2rem;padding:1.7rem 0;
+  font:500 11px/1 Karla,sans-serif;letter-spacing:.16em;text-transform:uppercase;
+  border-bottom:1px solid rgba(240,234,226,.14)}
+.B nav .mark{margin-right:auto;font-family:Fraunces;
+  font-variation-settings:"opsz" 144,"wght" 500,"SOFT" 20,"WONK" 1;
+  font-size:21px;text-transform:none;letter-spacing:0}
+.B nav .mark s{text-decoration:none;font-style:italic;color:var(--pink)}
+.B nav a{color:rgba(240,234,226,.62);text-decoration:none}
+.B .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:3.5rem;align-items:end;padding:4rem 0 3rem}
+.B h1{font-family:Fraunces;font-variation-settings:"opsz" 144,"wght" 300,"SOFT" 0,"WONK" 1;
+  font-size:clamp(2.6rem,6.4vw,4.8rem);line-height:.94;letter-spacing:-.03em;margin:0;color:var(--bone)}
+.B h1 i{font-style:italic;font-variation-settings:"opsz" 144,"wght" 400,"SOFT" 40,"WONK" 1;
+  background:linear-gradient(96deg,var(--orange),var(--pink));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.B .sub{max-width:40ch;margin:1.7rem 0 2rem;font-size:1rem;line-height:1.75;color:rgba(240,234,226,.66)}
+.B .rule{height:1px;background:linear-gradient(90deg,var(--orange),var(--pink),transparent);margin:2rem 0}
+.B .btn{display:inline-block;text-decoration:none;color:var(--void);
+  background:linear-gradient(96deg,var(--orange),var(--pink));
+  padding:.95rem 1.8rem;border-radius:999px;font:700 11px/1 Karla;letter-spacing:.14em;text-transform:uppercase}
+.B .btn+.btn{background:none;color:var(--bone);box-shadow:inset 0 0 0 1px rgba(240,234,226,.3);margin-left:.5rem}
+.B .slab{aspect-ratio:3/4;border-radius:3px;background:var(--panel);position:relative;
+  box-shadow:0 40px 90px -30px #000, inset 0 0 0 1px rgba(240,234,226,.08)}
+.B .slab::after{content:"";position:absolute;inset:0;border-radius:3px;
+  background:linear-gradient(200deg,rgba(255,122,61,.32),transparent 46%,rgba(255,95,162,.30))}
+.B .slab span{position:absolute;left:0;bottom:-1.9rem;font:500 10px/1 Karla;
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,226,.42)}
+.B .tiers{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(240,234,226,.14)}
+.B .tiers div{padding:1.6rem 1.2rem 0;border-right:1px solid rgba(240,234,226,.14)}
+.B .tiers div:last-child{border-right:0}
+.B .tiers b{font:500 9px/1 Karla;letter-spacing:.2em;text-transform:uppercase;color:var(--pink)}
+.B .tiers p{font-family:Fraunces;font-variation-settings:"opsz" 144,"wght" 400;
+  font-size:1.35rem;margin:.8rem 0 .25rem;color:var(--bone)}
+.B .tiers small{font-size:.78rem;color:rgba(240,234,226,.45)}
+
+/* ============ C - COCKPIT ============ */
+.C{--cream:#FFF6EC;--ink:#2A1A2E;--orange:#FF6B2C;--pink:#FF4E9B;
+  background:var(--cream);color:var(--ink);font-family:Figtree,sans-serif;
+  padding:0 0 2.5rem;position:relative;overflow:hidden}
+.C::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(rgba(255,78,155,.28) 1.6px,transparent 1.6px);background-size:26px 26px}
+.C .wrap{max-width:960px;margin:0 auto;padding:0 1.8rem;position:relative}
+.C nav{display:flex;align-items:center;gap:1.5rem;padding:1.4rem 0;font:700 12px/1 Figtree}
+.C nav .mark{font-family:"Baloo 2";font-weight:800;font-size:23px;margin-right:auto;letter-spacing:-.01em}
+.C nav .mark s{text-decoration:none;color:var(--pink)}
+.C nav a{color:var(--ink);text-decoration:none;opacity:.72}
+.C nav .cta{background:var(--ink);color:var(--cream);padding:.62rem 1rem;border-radius:999px;opacity:1}
+.C .hero{padding:2.8rem 0 2rem;text-align:center}
+.C h1{font-family:"Baloo 2";font-weight:800;font-size:clamp(2.4rem,6.6vw,4.6rem);line-height:1;
+  letter-spacing:-.025em;margin:0;color:var(--ink)}
+.C h1 u{text-decoration:none;background:linear-gradient(92deg,var(--orange),var(--pink));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.C .sub{max-width:46ch;margin:1.1rem auto 1.7rem;font-size:1rem;line-height:1.65;opacity:.72}
+.C .btn{display:inline-block;text-decoration:none;background:var(--ink);color:var(--cream);
+  padding:.95rem 1.8rem;border-radius:999px;font-weight:700;font-size:.9rem;
+  box-shadow:0 6px 0 rgba(42,26,46,.22)}
+.C .btn+.btn{background:var(--cream);color:var(--ink);box-shadow:inset 0 0 0 2.5px var(--ink);margin-left:.5rem}
+.C .visor{max-width:680px;margin:2.5rem auto 0;aspect-ratio:16/7;border-radius:999px 999px 44px 44px;
+  background:linear-gradient(165deg,var(--orange),var(--pink));position:relative;
+  box-shadow:0 22px 0 -6px rgba(42,26,46,.14),inset 0 0 0 7px var(--cream),0 0 0 3.5px var(--ink)}
+.C .visor::after{content:"";position:absolute;left:11%;top:16%;width:34%;height:40%;border-radius:999px;
+  background:linear-gradient(180deg,rgba(255,255,255,.55),transparent);transform:rotate(-14deg)}
+.C .badge{position:absolute;right:-12px;top:-16px;background:var(--cream);color:var(--ink);
+  border:3px solid var(--ink);border-radius:999px;padding:.65rem 1rem;transform:rotate(9deg);
+  font-family:"Baloo 2";font-weight:800;font-size:.8rem;line-height:1.15;text-align:center}
+.C .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-top:3rem}
+.C .cards div{background:var(--cream);border:3px solid var(--ink);border-radius:20px;padding:1.2rem 1rem;
+  box-shadow:0 7px 0 var(--ink)}
+.C .cards div:nth-child(2){background:#FFE9DE}
+.C .cards div:nth-child(4){background:#FFE4F0}
+.C .cards b{display:block;font-family:"Baloo 2";font-weight:800;font-size:1.05rem}
+.C .cards p{margin:.45rem 0 .1rem;font-weight:700;font-size:1.2rem;color:var(--orange)}
+.C .cards small{opacity:.62;font-size:.8rem}
+
+@media(max-width:760px){
+  .A .hero,.B .hero{grid-template-columns:1fr;gap:2rem}
+  .A .patch{max-width:260px}
+  .A .stub,.B .tiers,.C .cards{display:grid;grid-template-columns:1fr 1fr}
+  .A .stub div{border-right:0;border-bottom:2px dashed var(--ink)}
+  .B .tiers div{border-right:0;border-bottom:1px solid rgba(240,234,226,.14)}
+}
+</style>
+</head>
+<body>
+<nav class="crumb"><a href="index.html">Documentation</a> <strong>02 - Visual directions</strong>
+  <span class="pill now">Decision needed</span></nav>
+
+<main class="doc">
+
+<h1>Visual directions</h1>
+<p class="lede">Three complete directions, each rendered below with its real typefaces and palette
+rather than described. All three use the specified orange, pink and light neutral, and all three
+read as "space" - they differ in what kind of space, and therefore in what kind of studio Starship
+Suits appears to be.</p>
+
+<div class="note">
+  <b>How to choose</b>
+  Do not pick on prettiness. Pick on the answer to one question: <em>which of these makes a buyer
+  comfortable spending $8,000 and waiting four months?</em> Each direction answers it differently -
+  A by looking meticulous, B by looking expensive, C by looking friendly. All three are defensible.
+  The rest of the build follows from this choice, so it is worth an afternoon.
+</div>
+
+<h2>Direction A - Mission Patch</h2>
+<p><b>Apollo-era print.</b> Warm bone paper with a halftone dot texture, heavy extended type set in
+uppercase, embroidered-badge geometry, and prices laid out as a perforated ticket stub. The space
+reference is <em>printed matter</em> - mission patches, checklists, flight manifests - not outer
+space itself.</p>
+
+<div class="swatches">
+  <div><i style="background:#F3EDE3"></i><small>#F3EDE3 bone</small></div>
+  <div><i style="background:#17150F"></i><small>#17150F ink</small></div>
+  <div><i style="background:#E2571E"></i><small>#E2571E orange</small></div>
+  <div><i style="background:#E8628C"></i><small>#E8628C pink</small></div>
+</div>
+<p class="muted"><b>Type:</b> Archivo (variable, width axis pushed to 112-118 at weight 900) for
+display; Martian Mono for labels, prices and navigation.</p>
+
+<div class="preview">
+  <div class="bar">Direction A - Mission Patch</div>
+  <section class="A">
+    <div class="wrap">
+      <nav>
+        <div class="mark">starship<s>suits</s></div>
+        <span>Prices</span><span>Portfolio</span><span>Commissions</span><span>Contact</span>
+      </nav>
+      <div class="hero">
+        <div>
+          <h1>Custom<u>fursuits</u><u>built to fly</u></h1>
+          <p class="sub">Handmade character suits, engineered like flight gear. Limited commission
+            slots open each season. Built once, built right.</p>
+          <a class="btn" href="#a">Request a slot</a><a class="btn" href="#a">See the work</a>
+        </div>
+        <div class="patch"><span>starship suits<br>&#9670;<br>est. 2026</span></div>
+      </div>
+      <div class="stub">
+        <div><b>Head only</b><p>$3,000+</p><small>Foam base, 3D eyes</small></div>
+        <div><b>Mini partial</b><p>$3,400+</p><small>Head, paws, tail</small></div>
+        <div><b>Slim fullsuit</b><p>$6,500+</p><small>Digitigrade, slim</small></div>
+        <div><b>Plush fullsuit</b><p>$6,600+</p><small>Digitigrade, thick</small></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wide">
+<table>
+  <thead><tr><th>Strengths</th><th>Risks</th></tr></thead>
+  <tbody><tr>
+    <td>Reads as meticulous and technical, which is exactly the reassurance a $8,000 buyer wants.
+    Translates directly to merch - patches, stickers, hang tags, business cards - so the brand
+    extends past the website for free. The light background frames suit photography without
+    competing. Cheapest of the three to produce well.</td>
+    <td>Retro-NASA is a well-worn aesthetic; executed lazily it looks like a t-shirt template.
+    Uppercase extended type is unforgiving of long words and can get shouty. Least overtly
+    "furry" of the three - risks reading as an aerospace consultancy if the photography is weak.</td>
+  </tr></tbody>
+</table>
+</div>
+
+<h2>Direction B - Deep Space Vitrine</h2>
+<p><b>Dark editorial.</b> A near-black plum void with a soft nebula bloom, an asymmetric grid, and
+a high-contrast wonky serif. Photography is the hero and everything else recedes; orange and pink
+appear only as rim light, gradient text, and a single hairline rule. The space reference is
+<em>the void the object floats in</em>.</p>
+
+<div class="swatches">
+  <div><i style="background:#0B0910"></i><small>#0B0910 void</small></div>
+  <div><i style="background:#161020"></i><small>#161020 panel</small></div>
+  <div><i style="background:#F0EAE2"></i><small>#F0EAE2 bone</small></div>
+  <div><i style="background:#FF7A3D"></i><small>#FF7A3D orange</small></div>
+  <div><i style="background:#FF5FA2"></i><small>#FF5FA2 pink</small></div>
+</div>
+<p class="muted"><b>Type:</b> Fraunces (variable, with the WONK and SOFT axes engaged - the italic
+is genuinely unusual) for display; Karla for body and navigation.</p>
+
+<div class="preview">
+  <div class="bar">Direction B - Deep Space Vitrine</div>
+  <section class="B">
+    <div class="wrap">
+      <nav>
+        <div class="mark">Starship <s>Suits</s></div>
+        <a href="#b">Prices</a><a href="#b">Portfolio</a><a href="#b">Commissions</a><a href="#b">Contact</a>
+      </nav>
+      <div class="hero">
+        <div>
+          <h1>Wearable<br><i>starcraft</i></h1>
+          <p class="sub">Full-body character suits made one at a time, to measure. Four commission
+            tiers, a handful of slots a year, and a build log you can follow from foam to finish.</p>
+          <a class="btn" href="#b">Join the queue</a><a class="btn" href="#b">Portfolio</a>
+        </div>
+        <div class="slab ph"><span>hero photograph - full suit, three-quarter</span></div>
+      </div>
+      <div class="rule"></div>
+      <div class="tiers">
+        <div><b>Head</b><p>$3,000 - 5,000</p><small>Foam base, resin eyes</small></div>
+        <div><b>Mini partial</b><p>$3,400 - 6,500</p><small>Head, paws, tail</small></div>
+        <div><b>Slim digi</b><p>$6,500 - 11,000</p><small>Slim digitigrade</small></div>
+        <div><b>Plush digi</b><p>$6,600 - 12,000</p><small>Thick digitigrade</small></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wide">
+<table>
+  <thead><tr><th>Strengths</th><th>Risks</th></tr></thead>
+  <tbody><tr>
+    <td>Most obviously premium - it justifies the top of the price range on sight and is the only
+    direction that makes a $12,000 suit look like a $12,000 suit. Saturated fursuit colours pop
+    hard against near-black. Neither reference studio looks anything like this, so it differentiates
+    instantly.</td>
+    <td><b>Entirely dependent on photography.</b> Dark editorial layouts have nowhere to hide a
+    badly lit snapshot - this direction is only viable with properly shot work on clean backgrounds.
+    It is also the coolest in tone, which sits slightly against the warm, personal character of the
+    fandom, and the least merch-friendly of the three.</td>
+  </tr></tbody>
+</table>
+</div>
+
+<h2>Direction C - Cockpit</h2>
+<p><b>Playful retro-futurist toy.</b> Cream base with a pink starfield dot grid, chunky rounded
+display type, helmet-visor shapes, rotated sticker badges and hard offset shadows. Everything is
+tactile and slightly over-inflated - the page has the same proportions as the product. The space
+reference is <em>a toy rocket ship</em>.</p>
+
+<div class="swatches">
+  <div><i style="background:#FFF6EC"></i><small>#FFF6EC cream</small></div>
+  <div><i style="background:#2A1A2E"></i><small>#2A1A2E ink</small></div>
+  <div><i style="background:#FF6B2C"></i><small>#FF6B2C orange</small></div>
+  <div><i style="background:#FF4E9B"></i><small>#FF4E9B pink</small></div>
+</div>
+<p class="muted"><b>Type:</b> Baloo 2 (heavy rounded) for display; Figtree for body.</p>
+
+<div class="preview">
+  <div class="bar">Direction C - Cockpit</div>
+  <section class="C">
+    <div class="wrap">
+      <nav>
+        <div class="mark">starship<s>suits</s></div>
+        <a href="#c">Prices</a><a href="#c">Portfolio</a><a href="#c">Commissions</a>
+        <a class="cta" href="#c">Get a quote</a>
+      </nav>
+      <div class="hero">
+        <h1>Suit up for <u>launch</u></h1>
+        <p class="sub">Custom fursuits with big eyes, big proportions and a whole lot of personality.
+          Slots open a few times a year - grab one before they're gone.</p>
+        <a class="btn" href="#c">Request a slot</a><a class="btn" href="#c">See the fleet</a>
+        <div class="visor ph"><div class="badge">SLOTS<br>OPEN</div></div>
+      </div>
+      <div class="cards">
+        <div><b>Head</b><p>$3,000+</p><small>Foam base, 3D eyes</small></div>
+        <div><b>Mini partial</b><p>$3,400+</p><small>Head, paws, tail</small></div>
+        <div><b>Slim digi</b><p>$6,500+</p><small>Slim digitigrade</small></div>
+        <div><b>Plush digi</b><p>$6,600+</p><small>Thick digitigrade</small></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wide">
+<table>
+  <thead><tr><th>Strengths</th><th>Risks</th></tr></thead>
+  <tbody><tr>
+    <td>By far the most fandom-native and the warmest - it looks like it was made by someone who
+    is in the community rather than selling to it. The one direction that works <em>without</em>
+    professional photography, because the illustration and shape language carry the page on their
+    own. Best for social sharing and merch stickers.</td>
+    <td>Playfulness can undercut a $12,000 price point - it must be balanced with genuinely
+    serious pages for terms, process and payment. Chunky rounded type has a narrow band between
+    charming and childish, and heavy borders plus hard shadows get cluttered fast if applied
+    everywhere. Hardest of the three to keep disciplined.</td>
+  </tr></tbody>
+</table>
+</div>
+
+<h2>Comparison</h2>
+<div class="wide">
+<table>
+  <thead><tr><th></th><th>A - Mission Patch</th><th>B - Vitrine</th><th>C - Cockpit</th></tr></thead>
+  <tbody>
+    <tr><td>Theme</td><td>Light, warm paper</td><td>Dark</td><td>Light, cream</td></tr>
+    <tr><td>Says</td><td>Meticulous</td><td>Expensive</td><td>Friendly</td></tr>
+    <tr><td>Needs great photography</td><td>Helps</td><td><b>Essential</b></td><td>Optional</td></tr>
+    <tr><td>Merch and print extension</td><td><b>Excellent</b></td><td>Weak</td><td>Strong</td></tr>
+    <tr><td>Differentiates from Wix competitors</td><td>Strong</td><td><b>Strongest</b></td><td>Strong</td></tr>
+    <tr><td>Supports a $12k price</td><td>Good</td><td><b>Best</b></td><td>Needs care</td></tr>
+    <tr><td>Fandom-native feel</td><td>Moderate</td><td>Low</td><td><b>Highest</b></td></tr>
+    <tr><td>Build effort</td><td>Low</td><td>Medium</td><td>High</td></tr>
+    <tr><td>Risk if executed poorly</td><td>Generic retro</td><td>Cold and empty</td><td>Cluttered, childish</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Recommendation</h3>
+<p><b>Direction A, if the studio has no professional photography yet; Direction B once it does.</b>
+A is the safest bet with the widest margin for error, it costs the least to build well, and its
+mission-patch geometry gives an immediate logo and merch system - which a new studio needs more
+than a beautiful homepage. B is the stronger site, but it is a photography project wearing a web
+design, and commissioning it before there is work to photograph would be building the frame before
+the picture.</p>
+<p>C is the right answer if the studio's actual character is loud and funny. That is a question
+about the owner, not about design, and it should be answered honestly rather than aspirationally.</p>
+
+<h2>If a direction is picked</h2>
+<p>The chosen direction becomes a token set and a component library before any page is built:</p>
+<ul>
+  <li><b>Tokens</b> - colour, type scale, spacing scale and radii as CSS custom properties in one file.</li>
+  <li><b>Fonts self-hosted</b> - subset WOFF2 files committed to the repository. The live site must not
+  load fonts from Google's CDN: it would breach the site's own <code>default-src 'self'</code> policy,
+  add a third-party dependency on the render path, and leak visitor IPs to a third party. These
+  planning documents use the CDN because they are internal and never published.</li>
+  <li><b>Components</b> - navigation, tier card, portfolio tile, gallery lightbox, enquiry form,
+  footer. Built once, reused by every page in
+  <a href="03-site-architecture.html">document 03</a>.</li>
+  <li><b>Accessibility pass</b> - all three directions need contrast verification before shipping.
+  Orange on light is the risk in A and C; the muted body text on void is the risk in B.</li>
+</ul>
+
+<footer>
+  <a href="index.html">Back to documentation</a> &middot; Previous:
+  <a href="01-brand-brief.html">01 - Brand brief</a> &middot; Next:
+  <a href="03-site-architecture.html">03 - Site architecture</a>
+</footer>
+
+</main>
+</body>
+</html>

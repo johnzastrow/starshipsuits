@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>04 - Build and launch plan - Starship Suits</title>
+<link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<nav class="crumb"><a href="index.html">Documentation</a> <strong>04 - Build and launch plan</strong></nav>
+
+<main class="doc">
+
+<h1>Build and launch plan</h1>
+<p class="lede">Platform choice, where to register the domain, where to host, the security headers
+the host must set, and the phased route from the current scaffold to a live site.</p>
+
+<h2 id="platform">Platform: custom build or Wix?</h2>
+<p>Both reference studios run Wix (<a href="05-reference-infrastructure.html">document 05</a>), so
+this deserves a straight answer rather than an assumption.</p>
+
+<div class="wide">
+<table>
+  <thead><tr><th></th><th>Custom static site</th><th>Wix / Squarespace</th></tr></thead>
+  <tbody>
+    <tr><td>Owner can edit without help</td><td class="muted">No - edits are HTML and git</td><td><b>Yes - visual editor</b></td></tr>
+    <tr><td>Distinctive visual identity</td><td><b>Complete control</b></td><td class="muted">Template-bounded</td></tr>
+    <tr><td>Performance</td><td><b>Very fast - a few KB</b></td><td class="muted">Heavy JS runtime</td></tr>
+    <tr><td>Security headers</td><td><b>Fully configurable</b></td><td class="muted">Platform default, not changeable</td></tr>
+    <tr><td>Forms, booking, shop</td><td class="muted">Bolt-on per feature</td><td><b>Built in</b></td></tr>
+    <tr><td>Portability</td><td><b>Files in git - move anywhere</b></td><td class="muted">Locked to platform</td></tr>
+    <tr><td>Running cost</td><td><b>~$0-5/mo plus domain</b></td><td class="muted">~$17-35/mo</td></tr>
+    <tr><td>Setup effort</td><td class="muted">A developer, ~1-2 weeks</td><td><b>A weekend, unaided</b></td></tr>
+    <tr><td>Ongoing maintenance</td><td class="muted">Needs a person who edits HTML</td><td><b>None</b></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="note">
+  <b>The question that actually decides it</b>
+  Not "which is better" - custom wins on most rows. It is <em>who edits this site in two years?</em>
+  If the answer is the studio owner working alone, Wix is the honest recommendation and the extra
+  $20 a month buys real independence. If a developer is committed to it - which is the premise
+  here - build custom, and the advantages are all real.
+  <br><br>
+  <b>Middle path worth considering:</b> build custom, but move the frequently-changing content -
+  the status strip, the queue table, portfolio entries - into small JSON or Markdown files with a
+  short README on editing them. It keeps the design custom while making routine updates a text
+  edit rather than a code change.
+</div>
+<p><b>Recommendation: custom static site</b>, on the premise that a developer is maintaining it,
+with the editable-content files above as a hedge.</p>
+
+<h2 id="registrar">Where to register the domain</h2>
+
+<h3>Availability</h3>
+<p>Checked against the registry on 5 August 2026 - <b><code>starshipsuits.com</code> is
+available</b>, as is every sensible alternative:</p>
+<div class="wide">
+<table>
+  <thead><tr><th>Domain</th><th>Status</th><th>Comment</th></tr></thead>
+  <tbody>
+    <tr><td><code>starshipsuits.com</code></td><td><span class="pill done">Available</span></td>
+      <td><b>Register this.</b> The default assumption for any business; the one people type.</td></tr>
+    <tr><td><code>starshipsuits.studio</code></td><td><span class="pill done">Available</span></td>
+      <td>On-brand and available, but costs more and is less memorable when spoken.</td></tr>
+    <tr><td><code>starshipsuits.art</code></td><td><span class="pill done">Available</span></td><td>Fits a craft studio.</td></tr>
+    <tr><td><code>starshipsuits.shop</code></td><td><span class="pill done">Available</span></td><td>Only if merch becomes a real line.</td></tr>
+    <tr><td><code>starshipsuits.net</code> / <code>.co</code></td><td><span class="pill done">Available</span></td>
+      <td>Defensive registrations only.</td></tr>
+    <tr><td><code>starship-suits.com</code></td><td><span class="pill done">Available</span></td>
+      <td>Skip. Hyphens are lost every time the name is spoken aloud.</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="muted">Availability changes without warning. Register promptly - the name is clean,
+short, and unclaimed, which will not stay true indefinitely.</p>
+
+<h3>Registrar comparison</h3>
+<div class="wide">
+<table>
+  <thead><tr><th>Registrar</th><th>.com approx/yr</th><th>WHOIS privacy</th><th>Assessment</th></tr></thead>
+  <tbody>
+    <tr><td><b>Cloudflare Registrar</b></td><td>At cost, ~$10-11</td><td>Free, always</td>
+      <td><b>Recommended if hosting on Cloudflare.</b> Sells at wholesale with no markup and no
+      renewal escalation, and privacy is included rather than sold. Requires Cloudflare as DNS
+      provider, supports a limited TLD set, and does not offer email hosting.</td></tr>
+    <tr><td><b>Porkbun</b></td><td>~$10-12</td><td>Free, always</td>
+      <td><b>Recommended if you want flexibility.</b> Free WHOIS privacy, free email forwarding
+      (so <code>hello@starshipsuits.com</code> can forward to Gmail at no cost), wide TLD coverage
+      including <code>.studio</code> and <code>.art</code>, and no dependence on a particular host.</td></tr>
+    <tr><td>Namecheap</td><td>~$12-16</td><td>Free</td>
+      <td>Perfectly fine, slightly pricier at renewal, more upselling in the interface.</td></tr>
+    <tr><td>Squarespace Domains</td><td>~$20</td><td>Free</td>
+      <td>Inherited the former Google Domains business. Competent, unremarkable, more expensive.</td></tr>
+    <tr><td>GoDaddy</td><td>Low first year, ~$22+ after</td><td>Paid add-on</td>
+      <td><span class="pill block">Avoid</span> Loss-leader pricing followed by steep renewals, and
+      privacy is monetised rather than included.</td></tr>
+    <tr><td>Wix / Squarespace as host-registrar</td><td>Bundled</td><td>Optional, often off by default</td>
+      <td><span class="pill block">Avoid</span> Exactly the lock-in seen at Heckhoundz Studio -
+      registrar, DNS and host are one company, and leaving means moving all three at once. The
+      privacy default is also how that studio's home address ended up public.</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="muted">Prices are approximate as of mid-2026 and should be confirmed at purchase; ICANN
+fees and registry pricing change.</p>
+
+<div class="note">
+  <b>Recommendation</b>
+  <b>Porkbun</b>, unless Cloudflare Pages is chosen for hosting - in which case <b>Cloudflare
+  Registrar</b>, since the DNS is already there and the pricing is the best available. Either way:
+  <ul style="margin:.6rem 0 0">
+    <li>Register <code>starshipsuits.com</code> as the primary.</li>
+    <li><b>Enable WHOIS privacy before the record goes live</b>, not afterwards.</li>
+    <li>Turn on the registrar lock and two-factor authentication on the registrar account.</li>
+    <li>Register for 2-3 years, not 1 - it is cheap insurance against a lapsed renewal, and
+    Heckhoundz's domain expires within twelve months of registration.</li>
+    <li>Set a calendar reminder 60 days before expiry regardless of auto-renew.</li>
+    <li><b>Keep the registrar separate from the host.</b> The single most valuable structural
+    lesson from document 05.</li>
+  </ul>
+</div>
+
+<h2 id="hosting">Where to host</h2>
+<div class="wide">
+<table>
+  <thead><tr><th>Host</th><th>Cost</th><th>Custom headers</th><th>Forms</th><th>Assessment</th></tr></thead>
+  <tbody>
+    <tr><td><b>Cloudflare Pages</b></td><td>Free tier is ample</td><td>Yes - <code>_headers</code></td>
+      <td>Via Workers</td>
+      <td><b>Recommended.</b> Deploys from git on push, unmetered bandwidth, strong global network,
+      DDoS protection included, and pairs with Cloudflare Registrar. Forms need a small Worker,
+      which is a modest amount of extra work.</td></tr>
+    <tr><td><b>Netlify</b></td><td>Free tier, bandwidth-capped</td><td>Yes - <code>_headers</code></td>
+      <td><b>Built in</b></td>
+      <td><b>Recommended if the enquiry form matters most.</b> Netlify Forms handles the commission
+      enquiry with no code and no third-party origin, which is the single fiddliest part of a static
+      site. Bandwidth limits are a consideration for an image-heavy portfolio.</td></tr>
+    <tr><td>Vercel</td><td>Free tier</td><td>Yes - <code>vercel.json</code></td><td>No</td>
+      <td>Excellent, but oriented toward Next.js. No advantage here over the two above.</td></tr>
+    <tr><td>Self-host on existing infrastructure</td><td>Effectively free</td><td>Yes - full control</td>
+      <td>Own handler</td>
+      <td>Technically viable given the infrastructure already running. But this is a public business
+      site: it needs uptime, TLS renewal, DDoS resilience and backups without a person watching.
+      A managed edge host does that for nothing. <b>Not recommended</b> for the public site.</td></tr>
+    <tr><td>GitHub Pages</td><td>Free (public repos)</td><td><b>No</b></td><td>No</td>
+      <td>Staging only. Cannot set response headers at all, which rules it out for production.</td></tr>
+  </tbody>
+</table>
+</div>
+<p><b>Recommendation: Cloudflare Pages + Cloudflare Registrar</b> for the cleanest, cheapest setup -
+or <b>Netlify + Porkbun</b> if the built-in form handling is worth more than the integration.
+Decide this before the enquiry form is built, since the form is the one component that binds to the
+host.</p>
+
+<h2 id="headers">Security headers the production host must set</h2>
+<p>Neither reference site sets any of these, because Wix does not let its customers do so. This is
+free ground and takes about ten minutes.</p>
+
+<h3>Cloudflare Pages or Netlify - <code>_headers</code></h3>
+<pre><code>/*
+  Content-Security-Policy: default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'; form-action 'self'
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable</code></pre>
+
+<h3>nginx equivalent, if self-hosted</h3>
+<pre><code>add_header Content-Security-Policy "default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'; form-action 'self'" always;
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+add_header X-Content-Type-Options "nosniff" always;
+add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+add_header Permissions-Policy "geolocation=(), microphone=(), camera=()" always;</code></pre>
+
+<div class="note">
+  <b>Adjust the policy when third parties are added</b>
+  The policy above assumes the site loads nothing from anywhere else, which is the intended design.
+  Adding analytics, an embedded video, a map, or a third-party form service each requires widening
+  it. <b>Widen it deliberately, one origin at a time</b> - never relax to a wildcard to make
+  something work. Fonts must be self-hosted, which keeps <code>font-src</code> out of the policy
+  entirely.
+  <br><br>
+  Also worth setting at the registrar or DNS: a <b>CAA record</b> naming the certificate authority
+  the host uses, and <b>DNSSEC</b> if the registrar supports it. Heckhoundz has neither.
+</div>
+
+<h2>Phases</h2>
+
+<div class="card">
+  <h3 style="margin-top:0">Phase 0 - Scaffold <span class="pill done">Done</span></h3>
+  <p style="margin:0" class="muted">Repository created and pushed, placeholder page, Pages staging
+  workflow, Dependabot, licence, planning documents. Commits <code>33ee9ec</code> onward.</p>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0">Phase 1 - Decide <span class="pill now">Blocking</span></h3>
+  <p style="margin:0 0 .5rem" class="muted">Nothing else starts until these are answered. None
+  require a developer.</p>
+  <ul style="margin:0">
+    <li>Pick a <a href="02-visual-directions.html">visual direction</a>. Critical path.</li>
+    <li>Register <code>starshipsuits.com</code>, with WHOIS privacy on.</li>
+    <li>Choose the production host - Cloudflare Pages or Netlify.</li>
+    <li>Confirm the real commission tiers and prices.</li>
+    <li>Book the photography. Longest lead time of anything in this plan - start it first.</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0">Phase 2 - Design system <span class="pill todo">Next</span></h3>
+  <p style="margin:0" class="muted">Tokens for colour, type, spacing and radii as CSS custom
+  properties. Self-hosted subset WOFF2 fonts committed to the repository. Core components -
+  navigation, tier card, portfolio tile, footer, buttons - built and contrast-checked. Wordmark,
+  favicon and social preview image.</p>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0">Phase 3 - Pages <span class="pill todo">Then</span></h3>
+  <p style="margin:0" class="muted">The seven pages from
+  <a href="03-site-architecture.html">document 03</a>, built against real content as it arrives.
+  Home, prices and about first - they are useful even with a thin portfolio. Queue and terms last,
+  since they depend on studio decisions rather than code.</p>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0">Phase 4 - Media and forms <span class="pill todo">Then</span></h3>
+  <p style="margin:0" class="muted">Photography processed into an AVIF and JPEG responsive
+  pipeline. Gallery lightbox, keyboard-operable. Enquiry form wired to the chosen host's handler,
+  with honeypot, field length caps and rate limiting.</p>
+</div>
+
+<div class="card">
+  <h3 style="margin-top:0">Phase 5 - Launch <span class="pill todo">Finally</span></h3>
+  <p style="margin:0" class="muted">Repository flipped to public, Pages staging re-enabled, DNS
+  pointed at the production host, TLS verified, headers verified, then the checklist below.</p>
+</div>
+
+<h2>Pre-launch checklist</h2>
+<div class="wide">
+<table>
+  <thead><tr><th>Area</th><th>Check</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="4">Security</td><td>All headers from the section above present on a live response</td></tr>
+    <tr><td>HTTPS enforced; HTTP redirects to it; HSTS confirmed</td></tr>
+    <tr><td>CSP produces no console violations on any page</td></tr>
+    <tr><td>Form rate-limited, honeypot in place, field lengths capped</td></tr>
+    <tr><td rowspan="3">Privacy</td><td>WHOIS privacy on and verified by an actual lookup</td></tr>
+    <tr><td>No home address published anywhere on the site - a city or region is enough</td></tr>
+    <tr><td>Footer states what the enquiry form stores and for how long</td></tr>
+    <tr><td rowspan="3">Content</td><td>No placeholder prices remain - every figure is the studio's own</td></tr>
+    <tr><td>Written permission held for every suit photograph and every owner credit</td></tr>
+    <tr><td>Terms of service reviewed by someone qualified</td></tr>
+    <tr><td rowspan="4">Quality</td><td>Every image has descriptive alt text</td></tr>
+    <tr><td>Keyboard-navigable throughout, focus rings visible</td></tr>
+    <tr><td>Contrast verified against the chosen palette</td></tr>
+    <tr><td>Tested at 360px wide - most of this audience is on a phone</td></tr>
+    <tr><td rowspan="3">Operations</td><td>Registrar lock and two-factor authentication enabled</td></tr>
+    <tr><td>Domain renewal reminder set 60 days out</td></tr>
+    <tr><td>CAA record set; DNSSEC enabled if supported</td></tr>
+  </tbody>
+</table>
+</div>
+
+<footer>
+  <a href="index.html">Back to documentation</a> &middot; Previous:
+  <a href="03-site-architecture.html">03 - Site architecture</a> &middot; Related:
+  <a href="05-reference-infrastructure.html">05 - Reference site infrastructure</a>
+</footer>
+
+</main>
+</body>
+</html>

@@ -1,11 +1,21 @@
 # starshipsuits
 
-Branding and public website for starshipsuits.
+Branding and public website for **Starship Suits**, a fursuit-making studio.
 
 ## Status
 
-Scaffold. The visual direction has not been chosen yet, and `index.html` is a
-neutral placeholder standing in for the real landing page.
+Scaffold plus planning documents. The visual direction has not been chosen yet,
+and `index.html` is a neutral placeholder standing in for the real landing page.
+
+## Planning documents
+
+Open `docs/index.html` in a browser. The set covers the brand brief, three
+visual directions rendered with real type and colour, the site architecture,
+the build and launch plan, and a technical profile of two competitor sites.
+
+These are internal working documents. They are excluded from the published
+staging site by `.github/workflows/pages.yml`, which stages only `index.html`
+and `assets/`.
 
 ## Stack
 
