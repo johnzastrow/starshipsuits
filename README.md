@@ -36,6 +36,12 @@ Then open <http://localhost:8000>.
 
 - **Staging** — GitHub Pages, published from `main` by
   `.github/workflows/pages.yml` on every push.
+
+  Currently **disabled**. This repository is private, and GitHub Pages is not
+  available for private repositories on a free plan, so the workflow fails at
+  `configure-pages`. To turn staging on once the repository is public: set
+  Settings > Pages > Source to "GitHub Actions", then re-enable the workflow
+  with `gh workflow enable "Deploy staging to Pages"`.
 - **Production** — hosted outside GitHub. The host has not been chosen yet, so
   no production deploy configuration is committed. See the security note below
   about response headers, which must be configured on whichever host is picked.
