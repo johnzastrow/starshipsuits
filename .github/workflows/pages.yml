@@ -1,0 +1,43 @@
+# Publishes main to GitHub Pages as a staging preview. Production is hosted
+# elsewhere and is not deployed by this workflow.
+#
+# One-time setup: Settings > Pages > Build and deployment > Source = GitHub Actions.
+name: Deploy staging to Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Least privilege: the default token gets only what Pages deployment needs.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never run two deploys at once, but let a queued deploy finish rather than
+# cancelling it midway.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/configure-pages@v5
+
+      # No build step - the site is served as authored.
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

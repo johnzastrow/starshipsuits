@@ -1,0 +1,21 @@
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Local env and secrets - nothing secret belongs in this repo, this is a backstop
+.env
+.env.*
+*.pem
+*.key
+
+# Build and tooling output, if a toolchain is added later
+node_modules/
+dist/
+build/
+.cache/

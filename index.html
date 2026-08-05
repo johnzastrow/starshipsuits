@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--
+      Staging CSP. GitHub Pages cannot set HTTP response headers, so the policy
+      lives here. A meta CSP cannot express frame-ancestors, so the production
+      host must set the real header - see README.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; img-src 'self' data:; style-src 'self'"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <title>starshipsuits</title>
+    <meta name="description" content="starshipsuits" />
+
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <main class="placeholder">
+      <p class="wordmark">starshipsuits</p>
+      <p class="note">Site in development.</p>
+    </main>
+  </body>
+</html>
