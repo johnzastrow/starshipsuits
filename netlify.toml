@@ -17,6 +17,14 @@
   # Pin the runtime so a Netlify default change cannot alter a build silently.
   NODE_VERSION = "22"
 
+# Netlify includes this config file in the deployed file set, which would make
+# the header policy and publish paths readable at /netlify.toml. Nothing secret
+# lives here, but there is no reason to serve it.
+[[redirects]]
+  from = "/netlify.toml"
+  to = "/"
+  status = 404
+
 # ---------------------------------------------------------------------------
 # Security headers
 #
