@@ -34,18 +34,12 @@ jobs:
 
       - uses: actions/configure-pages@v5
 
-      # No build step - the site is served as authored. Only the site itself is
-      # staged: docs/ holds internal planning material and must not be published
-      # alongside the public site.
-      - name: Assemble site
-        run: |
-          mkdir -p _site
-          cp index.html _site/
-          cp -r assets _site/
-
+      # No build step - the site is served as authored. Only web/ is staged;
+      # docs/ holds internal planning material and must never be published
+      # alongside the public site. This mirrors `publish = "web"` in netlify.toml.
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: web
 
       - id: deployment
         uses: actions/deploy-pages@v4

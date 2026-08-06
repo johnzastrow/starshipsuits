@@ -87,9 +87,15 @@ it gets built and shipped.</p>
         <td>Private while it is a placeholder. Goes public when there is real content.</td></tr>
     <tr><td>Staging</td><td>GitHub Pages, currently disabled</td>
         <td>Pages is unavailable on private repositories on a free plan. Re-enables on going public.</td></tr>
-    <tr><td>Production host</td><td>Undecided - outside GitHub</td>
-        <td>Cloudflare Pages or Netlify recommended; see the
-        <a href="04-build-plan.html#hosting">hosting comparison</a>.</td></tr>
+    <tr><td>Domain</td><td><code>starshipsuits.com</code> at Porkbun</td>
+        <td>Free WHOIS privacy, free email forwarding, <code>ALIAS</code> support, independent of
+        the host. See the <a href="04-build-plan.html#registrar">registrar comparison</a>.</td></tr>
+    <tr><td>Production host</td><td>Netlify, deploying from this repository</td>
+        <td><code>netlify.toml</code> is committed with <code>publish = "web"</code> and the full
+        security header set. See <a href="04-build-plan.html#dns">the DNS steps</a>.</td></tr>
+    <tr><td>Publish directory</td><td><code>web/</code></td>
+        <td>Only <code>web/</code> is ever published. <code>docs/</code> stays internal, enforced in
+        both <code>netlify.toml</code> and the Pages workflow.</td></tr>
     <tr><td>Platform</td><td>Custom build, not Wix</td>
         <td>Both reference studios use Wix. Custom wins on identity, speed and portability - but
         only because a developer is maintaining it. See

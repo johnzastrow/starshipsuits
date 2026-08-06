@@ -2,78 +2,97 @@
 
 Branding and public website for **Starship Suits**, a fursuit-making studio.
 
+Production: [starshipsuits.com](https://starshipsuits.com) — domain at Porkbun,
+hosted on Netlify. Neither is connected yet; see **Deployment** below.
+
 ## Status
 
-Scaffold plus planning documents. The visual direction has not been chosen yet,
-and `index.html` is a neutral placeholder standing in for the real landing page.
+Scaffold plus planning documents. `web/index.html` is a neutral placeholder
+standing in for the real landing page. The visual direction is not settled — the
+plan is to start from a Netlify template rather than one of the three directions
+drawn up in `docs/02-visual-directions.html`.
 
 ## Planning documents
 
 Open `docs/index.html` in a browser. The set covers the brand brief, three
-visual directions rendered with real type and colour, the site architecture,
-the build and launch plan, and a technical profile of two competitor sites.
+visual directions rendered with real type and colour, the site architecture, the
+build and launch plan, and a technical profile of two competitor sites.
 
-These are internal working documents. They are excluded from the published
-staging site by `.github/workflows/pages.yml`, which stages only `index.html`
-and `assets/`.
-
-## Stack
-
-Plain HTML, CSS, and JavaScript. No framework, no build step, no backend, and no
-server-side state. The site is entirely static and self-contained: it loads no
-third-party scripts, fonts, or stylesheets.
+These are internal working documents and are **never published**. Both the
+Netlify config (`publish = "web"`) and the Pages workflow stage `web/` only.
 
 ## Layout
 
 ```
-index.html            landing page
-assets/css/           stylesheets
+web/                  the site - everything Netlify publishes
+  index.html          landing page
+  assets/css/         stylesheets
+netlify.toml          publish dir, security headers, cache policy
+docs/                 internal planning documents - not published
 .github/workflows/    GitHub Pages staging deploy
 .github/dependabot.yml
 ```
 
+## Stack
+
+Plain HTML and CSS. No framework, no build step, no backend, no server-side
+state. The site is self-contained and loads no third-party scripts, fonts, or
+stylesheets.
+
+Adopting a Netlify template would change this — the templates in Netlify's
+gallery are all framework-based (Astro, Next.js, Hugo) and introduce a build
+step and a dependency tree. If one is adopted, update `netlify.toml`'s `command`
+and `publish` accordingly, and add the matching ecosystem to
+`.github/dependabot.yml`.
+
 ## Local preview
 
-Any static file server works. With Python installed:
+Any static file server works:
 
 ```sh
-python3 -m http.server 8000
+cd web && python3 -m http.server 8000
 ```
 
 Then open <http://localhost:8000>.
 
 ## Deployment
 
-- **Staging** — GitHub Pages, published from `main` by
-  `.github/workflows/pages.yml` on every push.
+**Production — Netlify.** `netlify.toml` is committed and complete. To go live:
 
-  Currently **disabled**. This repository is private, and GitHub Pages is not
-  available for private repositories on a free plan, so the workflow fails at
-  `configure-pages`. To turn staging on once the repository is public: set
-  Settings > Pages > Source to "GitHub Actions", then re-enable the workflow
-  with `gh workflow enable "Deploy staging to Pages"`.
-- **Production** — hosted outside GitHub. The host has not been chosen yet, so
-  no production deploy configuration is committed. See the security note below
-  about response headers, which must be configured on whichever host is picked.
+1. In Netlify, *Add new site → Import an existing project → GitHub*, and pick
+   `johnzastrow/starshipsuits`. Netlify reads `netlify.toml`; no build settings
+   need to be entered by hand. (Netlify's free tier deploys from private
+   repositories, so this repo does not have to be public.)
+2. Add the custom domain `starshipsuits.com` in *Domain management*.
+3. At Porkbun, point DNS at Netlify — see `docs/04-build-plan.html`.
+4. Let Netlify provision the Let's Encrypt certificate, then enable
+   *Force HTTPS*.
+
+Every push to `main` then deploys; pull requests get deploy previews.
+
+**Staging — GitHub Pages.** Currently **disabled**. Pages is unavailable for
+private repositories on a free plan, so the workflow fails at `configure-pages`.
+Once this repository is public: set *Settings → Pages → Source* to
+"GitHub Actions", then `gh workflow enable "Deploy staging to Pages"`.
 
 ## Security notes
 
-The site is static and public, so the usual server-side concerns (auth,
-sessions, database access, secrets) do not apply. What does apply:
+The site is static and public, so server-side concerns (auth, sessions, database
+access, secrets) do not apply. What does:
 
-- **Response headers are a production-host responsibility.** GitHub Pages cannot
-  set custom HTTP headers, so staging relies on a `Content-Security-Policy`
-  `<meta>` tag. A `<meta>` CSP cannot express `frame-ancestors`, so clickjacking
-  protection is unavailable on staging. The production host must set real
-  headers: `Content-Security-Policy` (including `frame-ancestors 'none'`),
-  `Strict-Transport-Security`, `X-Content-Type-Options: nosniff`, and
-  `Referrer-Policy`.
-- **No third-party origins.** The CSP is `default-src 'self'` and everything the
-  page needs is served from this repo. Adding an external font, analytics
-  snippet, or CDN script means widening that policy, and any such script needs
-  Subresource Integrity.
-- **No secrets belong in this repo.** It is public and has no server side that
-  could hold a credential.
+- **Real headers come from Netlify.** `netlify.toml` sets CSP (including
+  `frame-ancestors 'none'`), HSTS, `X-Content-Type-Options`, `Referrer-Policy`,
+  `Permissions-Policy`, and `Cross-Origin-Opener-Policy`. GitHub Pages cannot set
+  headers at all, so staging falls back to a `<meta>` CSP — which cannot express
+  `frame-ancestors`, leaving staging framable. Production is the authority.
+- **No third-party origins.** The CSP is `default-src 'self'`. Adding analytics,
+  an embedded video, a map, or a hosted font requires widening it deliberately,
+  one origin at a time — never to a wildcard. Fonts must be self-hosted.
+- **A template changes this calculus.** Framework templates pull in a dependency
+  tree and often load third-party assets. Review what any adopted template
+  fetches at runtime before pointing DNS at it, and widen the CSP explicitly
+  rather than removing it.
+- **No secrets belong in this repo.** There is no server side to hold one.
 
 ## License
 

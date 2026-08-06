@@ -107,9 +107,10 @@ short, and unclaimed, which will not stay true indefinitely.</p>
 fees and registry pricing change.</p>
 
 <div class="note">
-  <b>Recommendation</b>
-  <b>Porkbun</b>, unless Cloudflare Pages is chosen for hosting - in which case <b>Cloudflare
-  Registrar</b>, since the DNS is already there and the pricing is the best available. Either way:
+  <b>Decided: Porkbun <span class="pill done">Settled</span></b>
+  Free WHOIS privacy, free email forwarding for <code>hello@starshipsuits.com</code>,
+  <code>ALIAS</code> support for pointing the apex at Netlify, and no tie to the host. Still to do
+  at registration:
   <ul style="margin:.6rem 0 0">
     <li>Register <code>starshipsuits.com</code> as the primary.</li>
     <li><b>Enable WHOIS privacy before the record goes live</b>, not afterwards.</li>
@@ -149,10 +150,56 @@ fees and registry pricing change.</p>
   </tbody>
 </table>
 </div>
-<p><b>Recommendation: Cloudflare Pages + Cloudflare Registrar</b> for the cleanest, cheapest setup -
-or <b>Netlify + Porkbun</b> if the built-in form handling is worth more than the integration.
-Decide this before the enquiry form is built, since the form is the one component that binds to the
-host.</p>
+<div class="note">
+  <b>Decided: Netlify + Porkbun <span class="pill done">Settled</span></b>
+  The domain is <code>starshipsuits.com</code>, registered at <b>Porkbun</b>; the site is hosted on
+  <b>Netlify</b>, deploying from the GitHub repository. This keeps the registrar independent of the
+  host - the structural lesson from <a href="05-reference-infrastructure.html">document 05</a> - and
+  gives the commission enquiry form a handler with no third-party origin and no code.
+  <br><br>
+  <code>netlify.toml</code> is committed at the repository root with <code>publish = "web"</code>
+  and the full header set below. Netlify's free tier deploys from private repositories, so the
+  repository does not need to be public to go live.
+</div>
+
+<h3 id="dns">Pointing Porkbun at Netlify</h3>
+<p>Two ways. The first keeps DNS where the domain is, which is the better default.</p>
+<div class="wide">
+<table>
+  <thead><tr><th>Approach</th><th>Records</th><th>Trade-off</th></tr></thead>
+  <tbody>
+    <tr><td><b>Keep DNS at Porkbun</b><br><span class="pill done">Recommended</span></td>
+      <td><code>ALIAS</code> on the apex &rarr; <code>apex-loadbalancer.netlify.com</code><br>
+          <code>CNAME</code> on <code>www</code> &rarr; <code>&lt;site&gt;.netlify.app</code></td>
+      <td>Porkbun supports <code>ALIAS</code>, which solves the CNAME-at-apex problem. DNS stays
+      with the registrar, so changing host later is two record edits. Email records stay in one
+      place.</td></tr>
+    <tr><td>Delegate to Netlify DNS</td>
+      <td>Change nameservers at Porkbun to the four <code>*.nsone.net</code> servers Netlify
+      assigns</td>
+      <td>Slightly smoother certificate and apex handling, and Netlify manages everything. But DNS
+      then lives with the host, so moving host later means moving DNS too - and any mail records
+      have to be recreated there.</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="muted">If <code>ALIAS</code> is unavailable for any reason, Netlify also publishes a
+plain <code>A</code> record for the apex. Confirm the current target values in Netlify's own
+documentation at setup rather than trusting figures written here - load-balancer addresses change.</p>
+
+<p>Order of operations matters, because getting it wrong means a broken certificate:</p>
+<ol>
+  <li>Connect the repository in Netlify and confirm the site deploys on its
+  <code>*.netlify.app</code> address first.</li>
+  <li>Add <code>starshipsuits.com</code> under <em>Domain management</em>, and set the
+  <code>www</code> subdomain as primary with a redirect from the apex (or the reverse - just pick
+  one and be consistent, so there is a single canonical hostname).</li>
+  <li>Add the DNS records at Porkbun. Propagation is usually minutes.</li>
+  <li>Wait for Netlify to provision the Let's Encrypt certificate, <em>then</em> enable
+  <b>Force HTTPS</b>. Enabling it before the certificate exists locks the site out.</li>
+  <li>Add a <code>CAA</code> record at Porkbun authorising Let's Encrypt, and enable DNSSEC.</li>
+  <li>Verify the headers below are live on a real response.</li>
+</ol>
 
 <h2 id="headers">Security headers the production host must set</h2>
 <p>Neither reference site sets any of these, because Wix does not let its customers do so. This is

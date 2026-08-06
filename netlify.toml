@@ -1,0 +1,47 @@
+# Netlify configuration for starshipsuits.com
+#
+# Deploys are git-connected: connect this repository once in the Netlify UI and
+# every push to main publishes. Pull requests get deploy previews automatically.
+
+[build]
+  # The site lives in web/. Everything else in this repository - docs/, LICENSE,
+  # README - is internal and is never published.
+  publish = "web"
+
+  # No build step: the site is plain HTML and CSS, served as authored.
+  # If a template with a toolchain is adopted later, set `command` here and
+  # point `publish` at that toolchain's output directory instead.
+  command = ""
+
+[build.environment]
+  # Pin the runtime so a Netlify default change cannot alter a build silently.
+  NODE_VERSION = "22"
+
+# ---------------------------------------------------------------------------
+# Security headers
+#
+# GitHub Pages cannot set these, which is why staging relies on a meta CSP and
+# production does not have to. Neither competitor site sets any of them - see
+# docs/05-reference-infrastructure.html.
+#
+# The policy assumes the site loads nothing from any other origin. Adding
+# analytics, an embedded video, a map, or a hosted font requires widening it
+# ONE origin at a time. Never relax a directive to a wildcard to make something
+# work.
+# ---------------------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'; form-action 'self'"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=()"
+    Cross-Origin-Opener-Policy = "same-origin"
+
+# Fingerprinted assets can be cached indefinitely. HTML deliberately is not -
+# it must revalidate so a deploy is visible immediately.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
