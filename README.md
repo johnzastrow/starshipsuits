@@ -7,10 +7,17 @@ hosted on Netlify. Neither is connected yet; see **Deployment** below.
 
 ## Status
 
-Scaffold plus planning documents. `web/index.html` is a neutral placeholder
-standing in for the real landing page. The visual direction is not settled — the
-plan is to start from a Netlify template rather than one of the three directions
-drawn up in `docs/02-visual-directions.html`.
+A single coming-soon page, live-ready. Built in **Direction A, "Mission Patch"**
+from `docs/02-visual-directions.html` — chosen because it is the one direction
+that works before the studio has professional photography.
+
+Direction A is not locked in. Everything visual is a CSS custom property in
+`:root` plus one `@font-face` block, so moving to Direction B or C is a token
+swap rather than a rewrite.
+
+Not yet done: the real contact route (deliberately left out rather than
+invented — see the comment in `web/index.html`), and the remaining six pages
+specified in `docs/03-site-architecture.html`.
 
 ## Planning documents
 

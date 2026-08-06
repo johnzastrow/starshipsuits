@@ -154,6 +154,21 @@ read as "space" - they differ in what kind of space, and therefore in what kind 
 Suits appears to be.</p>
 
 <div class="note">
+  <b>In use: Direction A, provisionally</b>
+  The live coming-soon page at <code>web/index.html</code> is built in <b>Direction A</b>, on the
+  reasoning in the recommendation below - it is the only one of the three that works before the
+  studio has professional photography. This is not a final commitment. Every visual value is a CSS
+  custom property in <code>:root</code> plus one <code>@font-face</code> block, so switching to B
+  or C is a token swap, not a rebuild. The full comparison still stands; read on.
+  <br><br>
+  One thing the build settled that the mockups did not: <b>measured contrast against the bone
+  background</b>. Ink is 15.67:1 and safe anywhere. Orange is 3.21:1 - it passes for large display
+  type only, and fails for body copy. Pink is 2.75:1 and <b>fails even at large sizes</b>, so it is
+  restricted to decorative shapes and must never be used for text. Directions B and C need the same
+  measurement before they ship.
+</div>
+
+<div class="note">
   <b>How to choose</b>
   Do not pick on prettiness. Pick on the answer to one question: <em>which of these makes a buyer
   comfortable spending $8,000 and waiting four months?</em> Each direction answers it differently -

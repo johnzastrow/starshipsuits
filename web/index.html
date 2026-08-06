@@ -5,25 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!--
-      Staging CSP. GitHub Pages cannot set HTTP response headers, so the policy
-      lives here. A meta CSP cannot express frame-ancestors, so the production
-      host must set the real header - see README.
+      Staging CSP, for GitHub Pages, which cannot set HTTP response headers.
+      In production Netlify sets the real headers from netlify.toml - including
+      frame-ancestors, which a meta CSP cannot express.
     -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; img-src 'self' data:; style-src 'self'"
+      content="default-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'none'"
     />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
 
-    <title>starshipsuits</title>
-    <meta name="description" content="starshipsuits" />
+    <title>Starship Suits - custom fursuit studio</title>
+    <meta
+      name="description"
+      content="Starship Suits is a fursuit studio building one-of-a-kind custom character suits to commission. Site launching soon."
+    />
+    <meta name="theme-color" content="#f3ede3" />
 
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Starship Suits - custom fursuit studio" />
+    <meta
+      property="og:description"
+      content="One-of-a-kind custom character suits, built to commission. Launching soon."
+    />
+    <meta property="og:url" content="https://starshipsuits.com/" />
+    <link rel="canonical" href="https://starshipsuits.com/" />
+
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="assets/fonts/archivo-latin-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
-    <main class="placeholder">
-      <p class="wordmark">starshipsuits</p>
-      <p class="note">Site in development.</p>
-    </main>
+    <div class="shell">
+      <header class="manifest">
+        <span>Starship Suits</span>
+        <span class="spacer">Custom fursuit studio</span>
+        <span>Est. 2026</span>
+      </header>
+
+      <main class="hero">
+        <div class="patch" role="img" aria-label="Starship Suits mission patch">
+          <span>Starship<br />&#9670;<br />Suits</span>
+        </div>
+
+        <h1 class="wordmark">Starship<span class="b">Suits</span></h1>
+
+        <p class="tagline">Custom fursuits, built to fly.</p>
+
+        <p class="blurb">
+          A studio building one-of-a-kind character suits to commission - made to
+          measure, one at a time. The full site, with portfolio, pricing and
+          commission slots, is on its way.
+        </p>
+
+        <!--
+          TODO before launch: replace with the studio's real contact route.
+          Deliberately omitted rather than invented - a placeholder address on a
+          live page collects nothing and costs trust.
+
+          <p class="blurb"><a href="mailto:hello@starshipsuits.com">hello@starshipsuits.com</a></p>
+        -->
+
+        <div class="stub">
+          <div>
+            <b>Status</b>
+            <p>Pre-launch</p>
+          </div>
+          <div>
+            <b>Commissions</b>
+            <p>Not yet open</p>
+          </div>
+          <div>
+            <b>Launching</b>
+            <p>2026</p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="foot">
+      <span>&copy; 2026 Starship Suits</span>
+      <span class="spacer">starshipsuits.com</span>
+    </footer>
   </body>
 </html>
