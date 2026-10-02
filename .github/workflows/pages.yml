@@ -37,7 +37,7 @@ jobs:
       # No build step - the site is served as authored. Only web/ is staged;
       # docs/ holds internal planning material and must never be published
       # alongside the public site. This mirrors `publish = "web"` in netlify.toml.
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: web
 
