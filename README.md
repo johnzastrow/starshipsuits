@@ -1,6 +1,6 @@
 # starshipsuits
 
-Branding and public website for **Starship Suits**, a fursuit-making studio.
+Branding and public website for Tobi's **Starship Suits**, a fursuit-making studio
 
 Production: [starshipsuits.com](https://starshipsuits.com) — domain at Porkbun,
 hosted on Netlify. Neither is connected yet; see **Deployment** below.
